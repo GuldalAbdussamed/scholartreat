@@ -1,116 +1,134 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Coffee, Bot, ArrowRight, Shield, Zap, Globe } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Coffee, Bot, ArrowRight, Shield, Zap, Globe, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export default function LandingPage() {
   return (
-    <div className="max-w-5xl mx-auto space-y-12 px-4 py-8">
+    <div className="max-w-5xl mx-auto space-y-16 px-4 py-8">
+      {/* Hero */}
       <div className="text-center space-y-6 pt-8">
-        <div className="flex justify-center gap-3">
-          <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-            <GraduationCap className="h-8 w-8 text-white" />
+        <div className="flex justify-center">
+          <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center animate-float animate-pulse-glow">
+            <GraduationCap className="h-10 w-10 text-white" />
           </div>
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-          Scholar<span className="text-violet-500">Treat</span>
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">
+          Scholar<span className="gradient-text">Treat</span>
         </h1>
-        <p className="text-xl text-muted-foreground font-medium max-w-2xl mx-auto">
-          Sponsor a student anywhere in the world. Buy them coffee, fund their education — settled instantly on Stellar.
+        <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-2xl mx-auto leading-relaxed">
+          Sponsor a student anywhere in the world.<br />
+          Buy them coffee, fund their education — <span className="text-violet-400 font-semibold">settled instantly on Stellar.</span>
         </p>
-        <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-          AI-powered matching finds the right student. Blockchain ensures every cent is tracked. No middlemen, no delays.
+        <p className="text-sm text-muted-foreground/70 max-w-xl mx-auto">
+          AI-powered matching. Blockchain transparency. No middlemen.
         </p>
-        <div className="flex flex-wrap justify-center gap-2 pt-2">
-          <Badge className="bg-violet-100 text-violet-700 hover:bg-violet-100"><Bot className="h-3 w-3 mr-1" /> AI Agent</Badge>
-          <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100"><Zap className="h-3 w-3 mr-1" /> Stellar</Badge>
-          <Badge className="bg-green-100 text-green-700 hover:bg-green-100"><Shield className="h-3 w-3 mr-1" /> x402 Payments</Badge>
-          <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100"><Globe className="h-3 w-3 mr-1" /> Global</Badge>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <Link href="/auth/student">
-          <Card className="group cursor-pointer hover:shadow-lg hover:border-violet-300 transition-all h-full">
-            <CardContent className="p-6 space-y-4">
-              <div className="h-12 w-12 rounded-xl bg-violet-100 flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-violet-600" />
-              </div>
-              <h2 className="text-xl font-semibold">I&apos;m a Student</h2>
-              <p className="text-muted-foreground text-sm">Register with your university email (.edu), browse scholarships and treats from sponsors worldwide. Get matched by AI.</p>
-              <div className="text-sm text-muted-foreground space-y-1">
-                <p>&#10003; University email required for verification</p>
-                <p>&#10003; Optional GitHub &amp; LinkedIn for better AI matching</p>
-                <p>&#10003; Receive USDC directly to your Stellar wallet</p>
-              </div>
-              <Button variant="outline" className="w-full group-hover:bg-violet-50">Register as Student <ArrowRight className="h-4 w-4 ml-2" /></Button>
-            </CardContent>
-          </Card>
-        </Link>
-        <Link href="/auth/sponsor">
-          <Card className="group cursor-pointer hover:shadow-lg hover:border-blue-300 transition-all h-full">
-            <CardContent className="p-6 space-y-4">
-              <div className="h-12 w-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                <Coffee className="h-6 w-6 text-blue-600" />
-              </div>
-              <h2 className="text-xl font-semibold">I&apos;m a Sponsor</h2>
-              <p className="text-muted-foreground text-sm">Create scholarships or treat students to coffee, lunch, books — anything. AI finds the most deserving student for you.</p>
-              <div className="text-sm text-muted-foreground space-y-1">
-                <p>&#10003; Individual or company sponsorship</p>
-                <p>&#10003; Set criteria: department, region, amount</p>
-                <p>&#10003; On-chain transparency for every payment</p>
-              </div>
-              <Button variant="outline" className="w-full group-hover:bg-blue-50">Register as Sponsor <ArrowRight className="h-4 w-4 ml-2" /></Button>
-            </CardContent>
-          </Card>
-        </Link>
-      </div>
-
-      <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-center">How It Works</h2>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="flex flex-wrap justify-center gap-3 pt-3">
           {[
-            { step: "1", title: "Sponsor Creates", desc: "Define what you want to offer — coffee, scholarship, or books", icon: Coffee },
-            { step: "2", title: "Students Apply", desc: "Verified students browse and apply with their profile", icon: GraduationCap },
-            { step: "3", title: "AI Matches", desc: "Gemini AI analyzes profiles and recommends the best match", icon: Bot },
-            { step: "4", title: "Stellar Pays", desc: "USDC is transferred instantly via Stellar — verifiable on-chain", icon: Zap },
-          ].map((item) => (
-            <Card key={item.step} className="text-center">
-              <CardContent className="p-4 space-y-2">
-                <div className="mx-auto h-10 w-10 rounded-full bg-violet-100 flex items-center justify-center text-violet-700 font-bold">{item.step}</div>
-                <h3 className="font-semibold text-sm">{item.title}</h3>
-                <p className="text-xs text-muted-foreground">{item.desc}</p>
-              </CardContent>
-            </Card>
+            { icon: Bot, label: "AI Agent", color: "from-violet-500/20 to-purple-500/20 border-violet-500/30 text-violet-300" },
+            { icon: Zap, label: "Stellar", color: "from-blue-500/20 to-cyan-500/20 border-blue-500/30 text-blue-300" },
+            { icon: Shield, label: "x402", color: "from-emerald-500/20 to-green-500/20 border-emerald-500/30 text-emerald-300" },
+            { icon: Globe, label: "Global", color: "from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-300" },
+          ].map((b) => (
+            <span key={b.label} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border bg-gradient-to-r ${b.color}`}>
+              <b.icon className="h-3 w-3" /> {b.label}
+            </span>
           ))}
         </div>
       </div>
 
-      <Card>
-        <CardContent className="p-6">
-          <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-4">Built with Stellar Ecosystem</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-            {[
-              { tool: "Stellar SDK", use: "Wallet & USDC transfers" },
-              { tool: "x402 Protocol", use: "Agentic micropayments for AI scoring" },
-              { tool: "Gemini 2.5 Flash", use: "Student profile analysis" },
-              { tool: "Circle USDC", use: "Stablecoin payments" },
-              { tool: "Friendbot", use: "Testnet funding" },
-              { tool: "Stellar.Expert", use: "Transaction verification" },
-            ].map((t) => (
-              <div key={t.tool} className="p-2 rounded-lg bg-muted/50">
-                <p className="font-medium">{t.tool}</p>
-                <p className="text-xs text-muted-foreground">{t.use}</p>
-              </div>
-            ))}
+      {/* CTA Cards */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <Link href="/auth/student">
+          <div className="glass-card glow-border group rounded-2xl p-6 space-y-4 cursor-pointer transition-all hover:scale-[1.02]">
+            <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+              <GraduationCap className="h-7 w-7 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold">I&apos;m a Student</h2>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Register with your .edu email. Browse treats and scholarships from sponsors worldwide. Let AI match you.
+            </p>
+            <div className="space-y-2 text-sm text-muted-foreground/80">
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> University email verification</p>
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> Optional GitHub &amp; LinkedIn</p>
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> Receive USDC to your wallet</p>
+            </div>
+            <div className="btn-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-white font-semibold text-sm">
+              Get Started <ArrowRight className="h-4 w-4" />
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </Link>
 
-      <p className="text-center text-xs text-muted-foreground pb-8">ScholarTreat &mdash; Build On Stellar Hackathon IBW 2026 &bull; Agentic Track</p>
+        <Link href="/auth/sponsor">
+          <div className="glass-card glow-border group rounded-2xl p-6 space-y-4 cursor-pointer transition-all hover:scale-[1.02]">
+            <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+              <Coffee className="h-7 w-7 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold">I&apos;m a Sponsor</h2>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Treat students to coffee, lunch, books — or fund scholarships. AI finds the most deserving match.
+            </p>
+            <div className="space-y-2 text-sm text-muted-foreground/80">
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> Individual or company</p>
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> Set your criteria</p>
+              <p className="flex items-center gap-2"><span className="text-emerald-400">&#10003;</span> On-chain transparency</p>
+            </div>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all hover:-translate-y-0.5">
+              Start Sponsoring <ArrowRight className="h-4 w-4" />
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      {/* How it works */}
+      <div className="space-y-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold">How It Works</h2>
+          <p className="text-muted-foreground/70 mt-2">Four steps. Zero friction.</p>
+        </div>
+        <div className="grid md:grid-cols-4 gap-4">
+          {[
+            { step: "01", title: "Sponsor Creates", desc: "Coffee, scholarship, books — you pick", icon: Coffee, gradient: "from-blue-500 to-cyan-500" },
+            { step: "02", title: "Students Apply", desc: "Verified students browse and apply", icon: GraduationCap, gradient: "from-violet-500 to-purple-500" },
+            { step: "03", title: "AI Matches", desc: "Gemini analyzes and recommends", icon: Sparkles, gradient: "from-fuchsia-500 to-pink-500" },
+            { step: "04", title: "Stellar Pays", desc: "USDC sent instantly, on-chain", icon: Zap, gradient: "from-emerald-500 to-green-500" },
+          ].map((item) => (
+            <div key={item.step} className="glass-card rounded-2xl p-5 text-center space-y-3 hover:scale-[1.03] transition-transform">
+              <div className={`mx-auto h-12 w-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center`}>
+                <item.icon className="h-6 w-6 text-white" />
+              </div>
+              <span className="text-xs font-mono text-muted-foreground/70">{item.step}</span>
+              <h3 className="font-bold">{item.title}</h3>
+              <p className="text-xs text-muted-foreground/70">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tech stack */}
+      <div className="glass-card rounded-2xl p-6">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70 mb-4">Built with Stellar Ecosystem</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {[
+            { tool: "Stellar SDK", use: "Wallet & USDC transfers", color: "border-blue-500/20" },
+            { tool: "x402 Protocol", use: "Agentic micropayments", color: "border-emerald-500/20" },
+            { tool: "Gemini 2.5 Flash", use: "Student profile analysis", color: "border-violet-500/20" },
+            { tool: "Circle USDC", use: "Stablecoin payments", color: "border-cyan-500/20" },
+            { tool: "Friendbot", use: "Testnet funding", color: "border-amber-500/20" },
+            { tool: "Stellar.Expert", use: "TX verification", color: "border-pink-500/20" },
+          ].map((t) => (
+            <div key={t.tool} className={`p-3 rounded-xl bg-muted border ${t.color}`}>
+              <p className="font-semibold text-sm">{t.tool}</p>
+              <p className="text-xs text-muted-foreground/70">{t.use}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p className="text-center text-xs text-muted-foreground/50 pb-8">
+        ScholarTreat &mdash; Build On Stellar Hackathon IBW 2026 &bull; Agentic Track
+      </p>
     </div>
   );
 }
