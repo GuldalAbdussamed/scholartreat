@@ -102,4 +102,4 @@ ScholarTreat is a web application built for the **Build on Stellar Hackathon (IB
 
 ## 🤝 Team & Acknowledgements
 
-Developed by **Takım 7** for the **Build on Stellar Hackathon / Istanbul Blockchain Week 2026**.
+Developed by **Abdüssamed Güldal** for the **Build on Stellar Hackathon / Istanbul Blockchain Week 2026**.
