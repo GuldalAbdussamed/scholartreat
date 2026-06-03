@@ -31,7 +31,7 @@ export function Sidebar() {
   const nav = role === "student" ? STUDENT_NAV : role === "sponsor" ? SPONSOR_NAV : GUEST_NAV;
 
   return (
-    <aside className="hidden md:flex w-56 flex-col border-r border-border bg-sidebar p-4 gap-2">
+    <aside className="hidden md:flex w-56 flex-col border-r border-border bg-sidebar p-4 gap-2 sticky top-0 h-screen overflow-y-auto">
       <Link href="/" className="flex items-center gap-2 px-2 py-3 mb-4">
         <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-500/20">
           <GraduationCap className="h-4.5 w-4.5 text-white" />

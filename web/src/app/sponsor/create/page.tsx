@@ -38,11 +38,31 @@ export default function CreateOfferPage() {
     <div className="max-w-lg mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6 text-center">Create an Offer</h1>
       <div className="grid grid-cols-2 gap-3 mb-6">
-        <button onClick={() => setOfferType("treat")} className={`p-4 rounded-xl border-2 text-center transition-all ${offerType === "treat" ? "border-blue-500 bg-blue-50" : "border-muted hover:border-blue-200"}`}>
-          <Coffee className={`h-6 w-6 mx-auto mb-2 ${offerType === "treat" ? "text-blue-600" : "text-muted-foreground"}`} /><p className="font-semibold text-sm">Treat</p><p className="text-xs text-muted-foreground">Coffee, lunch, books...</p>
+        <button
+          type="button"
+          onClick={() => setOfferType("treat")}
+          className={`p-4 rounded-xl border-2 text-center transition-all cursor-pointer ${
+            offerType === "treat"
+              ? "border-blue-500/50 bg-blue-500/10 text-blue-400 shadow-lg shadow-blue-500/5"
+              : "border-border bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
+        >
+          <Coffee className={`h-6 w-6 mx-auto mb-2 ${offerType === "treat" ? "text-blue-400" : "text-muted-foreground"}`} />
+          <p className={`font-semibold text-sm ${offerType === "treat" ? "text-blue-300" : "text-foreground/80"}`}>Treat</p>
+          <p className="text-xs text-muted-foreground/70 mt-1">Coffee, lunch, books...</p>
         </button>
-        <button onClick={() => setOfferType("scholarship")} className={`p-4 rounded-xl border-2 text-center transition-all ${offerType === "scholarship" ? "border-violet-500 bg-violet-50" : "border-muted hover:border-violet-200"}`}>
-          <GraduationCap className={`h-6 w-6 mx-auto mb-2 ${offerType === "scholarship" ? "text-violet-600" : "text-muted-foreground"}`} /><p className="font-semibold text-sm">Scholarship</p><p className="text-xs text-muted-foreground">Academic support</p>
+        <button
+          type="button"
+          onClick={() => setOfferType("scholarship")}
+          className={`p-4 rounded-xl border-2 text-center transition-all cursor-pointer ${
+            offerType === "scholarship"
+              ? "border-violet-500/50 bg-violet-500/10 text-violet-400 shadow-lg shadow-violet-500/5"
+              : "border-border bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
+        >
+          <GraduationCap className={`h-6 w-6 mx-auto mb-2 ${offerType === "scholarship" ? "text-violet-400" : "text-muted-foreground"}`} />
+          <p className={`font-semibold text-sm ${offerType === "scholarship" ? "text-violet-300" : "text-foreground/80"}`}>Scholarship</p>
+          <p className="text-xs text-muted-foreground/70 mt-1">Academic support</p>
         </button>
       </div>
       <Card>
