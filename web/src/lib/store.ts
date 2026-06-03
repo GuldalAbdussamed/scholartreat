@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { Student, Sponsor, Offer, UserRole, PaymentResult } from "./types";
 
 interface WalletState {
@@ -34,28 +35,35 @@ const emptyWallet: WalletState = {
   source: "none",
 };
 
-export const useAppStore = create<AppState>((set) => ({
-  role: "none",
-  student: null,
-  sponsor: null,
-  wallet: emptyWallet,
-  offers: [],
-  payments: [],
-
-  setRole: (role) => set({ role }),
-  setStudent: (student) => set({ student, role: "student" }),
-  setSponsor: (sponsor) => set({ sponsor, role: "sponsor" }),
-  setWallet: (wallet) => set({ wallet }),
-  setOffers: (offers) => set({ offers }),
-  addPayment: (payment) =>
-    set((s) => ({ payments: [...s.payments, payment] })),
-  logout: () =>
-    set({
+export const useAppStore = create<AppState>()(
+  persist(
+    (set) => ({
       role: "none",
       student: null,
       sponsor: null,
       wallet: emptyWallet,
       offers: [],
       payments: [],
+
+      setRole: (role) => set({ role }),
+      setStudent: (student) => set({ student, role: "student" }),
+      setSponsor: (sponsor) => set({ sponsor, role: "sponsor" }),
+      setWallet: (wallet) => set({ wallet }),
+      setOffers: (offers) => set({ offers }),
+      addPayment: (payment) =>
+        set((s) => ({ payments: [...s.payments, payment] })),
+      logout: () =>
+        set({
+          role: "none",
+          student: null,
+          sponsor: null,
+          wallet: emptyWallet,
+          offers: [],
+          payments: [],
+        }),
     }),
-}));
+    {
+      name: "scholartreat-store",
+    }
+  )
+);

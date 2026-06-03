@@ -36,10 +36,12 @@ export default function SponsorDashboardPage() {
         <Card><CardContent className="py-12 text-center space-y-4"><Coffee className="h-12 w-12 mx-auto text-muted-foreground" /><h3 className="font-semibold">No offers yet</h3><p className="text-sm text-muted-foreground">Create your first scholarship or treat to start supporting students</p><Link href="/sponsor/create"><Button><Plus className="h-4 w-4 mr-2" /> Create Offer</Button></Link></CardContent></Card>
       ) : (
         <div className="space-y-3">{offers.map((offer) => (
-          <Card key={offer.id}>
-            <CardHeader className="pb-2"><div className="flex items-center justify-between"><div className="flex items-center gap-2">{offer.type === "treat" ? <Coffee className="h-4 w-4 text-blue-500" /> : <GraduationCap className="h-4 w-4 text-violet-500" />}<CardTitle className="text-base">{offer.title}</CardTitle></div><Badge variant={offer.status === "open" ? "default" : "secondary"}>{offer.status}</Badge></div></CardHeader>
-            <CardContent><div className="flex items-center justify-between text-sm"><div className="flex items-center gap-4 text-muted-foreground"><span className="font-semibold text-foreground">{offer.amount} USDC</span>{offer.treatDetails && <span>{offer.treatDetails}</span>}<span className="flex items-center gap-1"><Users className="h-3 w-3" />{offer.applicants?.length || 0} applicants</span></div></div></CardContent>
-          </Card>
+          <Link key={offer.id} href={`/sponsor/offer?id=${offer.id}`}>
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardHeader className="pb-2"><div className="flex items-center justify-between"><div className="flex items-center gap-2">{offer.type === "treat" ? <Coffee className="h-4 w-4 text-blue-500" /> : <GraduationCap className="h-4 w-4 text-violet-500" />}<CardTitle className="text-base">{offer.title}</CardTitle></div><Badge variant={offer.status === "open" ? "default" : "secondary"}>{offer.status}</Badge></div></CardHeader>
+              <CardContent><div className="flex items-center justify-between text-sm"><div className="flex items-center gap-4 text-muted-foreground"><span className="font-semibold text-foreground">{offer.amount} USDC</span>{offer.treatDetails && <span>{offer.treatDetails}</span>}<span className="flex items-center gap-1"><Users className="h-3 w-3" />{offer.applicants?.length || 0} applicants</span></div></div></CardContent>
+            </Card>
+          </Link>
         ))}</div>
       )}
     </div>
