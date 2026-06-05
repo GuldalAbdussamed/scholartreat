@@ -66,6 +66,40 @@ ScholarTreat is a web application built for the **Build on Stellar Hackathon (IB
 
 ---
 
+## 📜 Contracts & Network Details
+
+ScholarTreat tüm ödemelerini **Stellar Testnet** üzerinde **USDC** ile gerçekleştirir. Aşağıda projede kullanılan asset/contract adresleri ve ağ uçları yer alır:
+
+### Stellar Network (Testnet)
+| Parametre | Değer |
+|-----------|-------|
+| Network | `stellar:testnet` |
+| Network Passphrase | `Test SDF Network ; September 2015` |
+| Horizon URL | `https://horizon-testnet.stellar.org` |
+| Soroban RPC URL | `https://soroban-testnet.stellar.org` |
+| Friendbot (Test XLM) | `https://friendbot.stellar.org` |
+
+### USDC Testnet Asset
+| Alan | Değer |
+|------|-------|
+| Asset Code | `USDC` |
+| Issuer (Classic Asset) | `GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5` |
+| Soroban Contract ID | `CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA` |
+
+🔍 Explorer üzerinde incelemek için:
+* **Issuer:** [stellar.expert/explorer/testnet/account/GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5](https://stellar.expert/explorer/testnet/account/GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5)
+* **Contract:** [stellar.expert/explorer/testnet/contract/CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA](https://stellar.expert/explorer/testnet/contract/CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA)
+
+### x402 Agent Payment
+| Alan | Değer |
+|------|-------|
+| Facilitator URL | `https://www.x402.org/facilitator` |
+| Protocol | HTTP 402 (Payment Required) |
+
+> Not: Tüm konfigürasyon değerleri [`web/src/lib/stellar.ts`](web/src/lib/stellar.ts) içinde tanımlıdır. Mainnet'e geçiş için issuer/contract değerleri Circle'ın resmi USDC asset adresleri ile değiştirilmelidir.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
