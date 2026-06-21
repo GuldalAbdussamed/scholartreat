@@ -136,4 +136,4 @@ ScholarTreat tüm ödemelerini **Stellar Testnet** üzerinde **USDC** ile gerçe
 
 ## 🤝 Team & Acknowledgements
 
-Developed by **Abdüssamed Güldal** for the **Build on Stellar Hackathon / Istanbul Blockchain Week 2026**.
+Developed by **Abdüssamed Güldal** 
