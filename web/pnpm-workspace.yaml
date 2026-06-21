@@ -1,3 +1,12 @@
+minimumReleaseAge: 0
+dangerouslyAllowAllBuilds: true
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+allowBuilds:
+  '@firebase/util': set this to true or false
+  '@google/genai': set this to true or false
+  msw: set this to true or false
+  protobufjs: set this to true or false
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false
