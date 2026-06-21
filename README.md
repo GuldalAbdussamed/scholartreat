@@ -2,7 +2,7 @@
 
 **Global Sponsor-Student Matching & Instant Micro-Sponsorships Settled on Stellar**
 
-ScholarTreat is a web application built for the **Build on Stellar Hackathon (IBW 2026 Istanbul)**. It connects global sponsors with deserving students, enabling micro-sponsorships (e.g., buying a coffee, funding books, meals, or tuition) that settle instantly and transparently using USDC on the Stellar network.
+ScholarTreat is a web application . It connects global sponsors with deserving students, enabling micro-sponsorships (e.g., buying a coffee, funding books, meals, or tuition) that settle instantly and transparently using USDC on the Stellar network.
 
 ---
 
