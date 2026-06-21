@@ -1,13 +1,11 @@
 {
   "firestore": {
-    "database": "(default)",
-    "location": "eur3",
-    "rules": "y",
-    "indexes": "y"
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "apphosting": {
     "backendId": "scholar-treat",
-    "rootDir": "y",
+    "rootDir": ".",
     "ignore": [
       "node_modules",
       ".git",

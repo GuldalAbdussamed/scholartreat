@@ -14,10 +14,9 @@ export async function payForScoringService(
   body: unknown
 ): Promise<X402PaymentResult> {
   try {
-    const { wrapFetch } = await import("@x402/fetch");
-    const { Resource } = await import("@x402/fetch");
+    const { wrapFetchWithPayment } = await import("@x402/fetch");
 
-    const fetchWithPayment = wrapFetch(fetch, {
+    const fetchWithPayment = wrapFetchWithPayment(fetch, {
       secretKey,
       network: NETWORK,
     });

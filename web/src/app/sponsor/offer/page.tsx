@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Offer, Application } from "@/lib/types";
 
-export default function OfferDetailPage() {
+function OfferDetailContent() {
   const searchParams = useSearchParams();
   const offerId = searchParams.get("id");
   const sponsor = useAppStore((s) => s.sponsor);
@@ -108,7 +108,6 @@ export default function OfferDetailPage() {
     setPaying(true);
 
     try {
-      // Server-side payment: Firestore secret keys → USDC trustlines → real transfer
       const res = await fetch("/api/pay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -142,9 +141,7 @@ export default function OfferDetailPage() {
           note: data.note,
         });
       } else {
-        // API returned an error — show it
         console.error("[pay] API error:", data.error);
-        // Fallback mock for demo continuity
         const mockHash = `mock_${Date.now().toString(36)}`;
         setTxResult({
           txHash: mockHash,
@@ -201,7 +198,6 @@ export default function OfferDetailPage() {
     );
   }
 
-  // ── Payment success screen ─────────────────────────────────────
   if (txResult) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
@@ -247,13 +243,11 @@ export default function OfferDetailPage() {
 
   const applicants = offer.applicants || [];
 
-  // Build a ranked map for display
   const rankedMap: Record<string, RankedApplicant> = {};
   if (agentResult) {
     agentResult.rankedApplicants.forEach((r) => { rankedMap[r.studentId] = r; });
   }
 
-  // Sort applicants: if agent result exists, sort by rank; otherwise original order
   const displayApplicants = agentResult
     ? [...applicants].sort((a, b) => {
         const ra = rankedMap[a.studentId]?.rank ?? 999;
@@ -269,7 +263,6 @@ export default function OfferDetailPage() {
         <ArrowLeft className="h-4 w-4" /> Back to Dashboard
       </Link>
 
-      {/* Offer Header */}
       <div className="glass-card rounded-2xl p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -298,7 +291,6 @@ export default function OfferDetailPage() {
         )}
       </div>
 
-      {/* ── AI AGENT PANEL ──────────────────────────────────────── */}
       <div className="glass-card rounded-2xl overflow-hidden">
         <div className="p-5 border-b border-border/40">
           <div className="flex items-center gap-3 mb-1">
@@ -319,7 +311,6 @@ export default function OfferDetailPage() {
         </div>
 
         <div className="p-5 space-y-3">
-          {/* Command examples */}
           <div className="flex flex-wrap gap-2">
             {[
               "Pick the most motivated applicant",
@@ -337,7 +328,6 @@ export default function OfferDetailPage() {
             ))}
           </div>
 
-          {/* Command input */}
           <div className="flex gap-2">
             <div className="flex-1 relative">
               <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -373,7 +363,6 @@ export default function OfferDetailPage() {
           )}
         </div>
 
-        {/* Agent Result Summary */}
         {agentResult && (
           <div className="border-t border-border/40 p-5 space-y-3"
             style={{ background: "oklch(0.15 0.04 310 / 30%)" }}>
@@ -390,7 +379,6 @@ export default function OfferDetailPage() {
         )}
       </div>
 
-      {/* ── APPLICANTS LIST ──────────────────────────────────────── */}
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-bold">
@@ -426,7 +414,6 @@ export default function OfferDetailPage() {
                     isTopPick ? "ring-2 ring-violet-500/50" : ""
                   }`}
                 >
-                  {/* Top pick banner */}
                   {isTopPick && (
                     <div className="px-4 py-2 flex items-center gap-2 text-xs font-bold text-yellow-300"
                       style={{ background: "linear-gradient(135deg, oklch(0.4 0.15 70 / 40%), oklch(0.35 0.12 50 / 30%))" }}>
@@ -436,10 +423,8 @@ export default function OfferDetailPage() {
                   )}
 
                   <div className="p-4 space-y-3">
-                    {/* Header row */}
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        {/* Rank badge */}
                         {ranked && (
                           <div className="h-9 w-9 rounded-xl flex items-center justify-center text-sm font-black text-white shrink-0"
                             style={{
@@ -477,7 +462,6 @@ export default function OfferDetailPage() {
                       </div>
                     </div>
 
-                    {/* Agent ranking detail (collapsible) */}
                     {ranked && (
                       <div>
                         <button
@@ -519,7 +503,6 @@ export default function OfferDetailPage() {
                       <p className="text-sm text-muted-foreground">{app.message}</p>
                     )}
 
-                    {/* Old single AI analysis result */}
                     {analysis && !ranked && (
                       <div className="rounded-xl p-3 space-y-1 text-xs border border-violet-500/20"
                         style={{ background: "oklch(0.15 0.04 280 / 40%)" }}>
@@ -532,7 +515,6 @@ export default function OfferDetailPage() {
                       </div>
                     )}
 
-                    {/* Action buttons */}
                     <div className="flex gap-2 pt-1">
                       {!analysis && !ranked && (
                         <Button variant="outline" size="sm"
@@ -568,5 +550,17 @@ export default function OfferDetailPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function OfferDetailPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center py-20">
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    }>
+      <OfferDetailContent />
+    </Suspense>
   );
 }
